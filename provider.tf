@@ -17,17 +17,16 @@ terraform {
 
   }
 
-backend "remote" {
-		hostname = "app.terraform.io"
-		organization = "AWSEKS-JNY"
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "AWSEKS-JNY"
 
-		workspaces {
-			name = "AWSEKS"
-		}
-	}
+    workspaces {
+      name = "AWSEKS"
+    }
+  }
 }
 
-/*
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
 }
@@ -40,8 +39,6 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.cluster.token
 
 }
-*/
-
 
 provider "aws" {
   region = "us-west-2"

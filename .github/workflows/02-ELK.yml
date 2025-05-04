@@ -21,7 +21,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-      
+
       - name: Terraform Validate
         id: validate
         run: terraform validate
@@ -43,7 +43,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2  # Specify your preferred AWS region
+          aws-region: us-west-2 # Specify your preferred AWS region
 
       - name: Verify AWS Credentials
         run: aws sts get-caller-identity
@@ -60,12 +60,12 @@ jobs:
         run: sleep 30
 
       - name: Deploy ELK Stack
-        run: | 
+        run: |
           cd modules/elk
           kubectl config view
           kubectl apply -f . --validate=false
-    
+
       - name: Verify kubectl configuration
-        run: | 
+        run: |
           sleep 30
           kubectl get svc -n elk
